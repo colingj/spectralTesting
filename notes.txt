@@ -1,0 +1,3 @@
+Test2App: wrong in two ways: gets var not inst, and initialises 7 vars not 4
+
+So we need to distinguish between "input variables" and "generated variables"
