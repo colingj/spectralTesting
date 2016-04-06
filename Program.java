@@ -6,13 +6,14 @@ public class Program
   int noVar, noInputVar;
   int argOutput;
   List<Statement> prog;
+  int[] target;
 
   /********************************************************************/
-  public Program(String filename)
+  public Program(String programFilename)
     throws java.io.FileNotFoundException
   {
     prog = new ArrayList<>();
-    Scanner sc = new Scanner(new File(filename));
+    Scanner sc = new Scanner(new File(programFilename));
     String firstLine = sc.nextLine();
     Scanner lineSc = new Scanner(firstLine);//split into tokens by whitespace
     String type = lineSc.next();
@@ -82,7 +83,7 @@ public class Program
 	/** end of temp print **/
 	evalByStep.add(new ArrayList<Integer>(state));
       }
-    System.out.println();
+    System.out.println();    
     return evalByStep;
   }
 

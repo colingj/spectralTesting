@@ -1,0 +1,14 @@
+import java.util.*;
+
+public class TargetExample1 implements Target
+{
+  public int calculate(List<Integer> inputs) 
+  {
+    int ans = 0;
+    for (int i=0;i<inputs.length;i++)
+      {
+	ans += inputs.get(i);
+      }
+    return ans;
+  }
+}

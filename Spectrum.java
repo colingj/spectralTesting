@@ -1,4 +1,7 @@
 import java.util.*;
+import weka.core.*;
+import weka.classifiers.*;
+import weka.classifiers.functions.MultilayerPerceptron;
 
 public class Spectrum
 {
@@ -8,7 +11,7 @@ public class Spectrum
   int[] target; // [trainingCase]
   int targetInState; //which variable in state is the target
 
-  public Spectrum(Program prog, DataSet ds)
+  public Spectrum(Program prog, DataSet ds, Target trg)
   {
     /** the main spectrum **/
 
@@ -32,8 +35,57 @@ public class Spectrum
       }
 
     /** the target **/
-    
-    targetInState = prog.getArgOutput();
+
+    target = new int[noTrainingCases];
+    for (int tc=0;tc<noTrainingCases;tc++)
+      {
+	target[tc] = trg.calculate(ds.getTrainingCase(tc));
+      }
+
+    targetInState = prog.getArgOutput();    
   }
 
+  public void analyse()
+  {
+    /* set up the feature vector */
+    ArrayList<Attribute> featureVector = new ArrayList<>();
+    for (int var=0;var<noVar;var++)
+      {
+	featureVector.add(new Attribute("v"+var));
+      }
+    featureVector.add(new Attribute("target"));
+    
+    /** build a model for each line **/
+    for (int line=0;line<noLines;line++)
+      {
+	Instances trainingSet =
+	  new Instances("ts", featureVector, noTrainingCases);
+	for (int tc=0;tc<noTrainingCases;tc++)
+	  {
+	    Instance ins = new DenseInstance(noVar+1);
+	    for (int var=0;var<noVar;var++)
+	      {
+		ins.setValue(featureVector.get(var), spec[var][line][tc]);
+	      }
+	    ins.setValue(featureVector.get(noVar), target[tc]);
+	  }
+	try
+	  {
+	    AbstractClassifier cModel = new MultilayerPerceptron();
+	    cModel.buildClassifier(trainingSet);
+	    Evaluation eTest = new Evaluation(trainingSet);
+	    eTest.evaluateModel(cModel, trainingSet);
+	    //  wibble: previous line should be testing set
+	    String strSummary = eTest.toSummaryString();
+	    System.out.println(strSummary);
+	  }
+	catch (Exception e)
+	  {
+	    System.err.println("Error!");
+	    System.exit(1);
+	  }	    
+      }//end of looping through lines
+  }
+  
+  
 }
