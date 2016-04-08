@@ -1,6 +1,0 @@
-import java.util.*;
-
-interface Target
-{
-  public int calculate(ArrayList<Integer> inputs);
-}
