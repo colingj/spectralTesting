@@ -1,3 +1,5 @@
+package testWeka;
+
 import java.util.*;
 import weka.core.*;
 import weka.classifiers.*;
@@ -26,14 +28,9 @@ public class Test5App
     Instances trainingSet = new Instances("Rel", featureVector, 10);
     trainingSet.setClass(classAttribute);
 
-    Instance i0 = new DenseInstance(1.0, new double[]{4,3,2,9});
-    // i0.setValue(attribute1, 4);
-    // i0.setValue(attribute2, 3);
-    // i0.setValue(attribute3, 2);
-    // i0.setValue(classAttribute, 9);
-    trainingSet.add(i0);
+    trainingSet.add(new DenseInstance(1.0, new double[]{4,3,2,9}));
 
-    i0 = new DenseInstance(4);
+    DenseInstance i0 = new DenseInstance(4);
     i0.setValue(attribute1, 1);
     i0.setValue(attribute2, 6);
     i0.setValue(attribute3, 3);

@@ -1,3 +1,5 @@
+package testWeka;
+
 import java.util.*;
 import weka.core.*;
 import weka.classifiers.*;
