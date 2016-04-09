@@ -1,19 +1,19 @@
 import java.util.*;
 
-public class SubStatement extends Statement
+public class StatementSub extends Statement
 {
   String varRef1;
   String varRef2;
   String out;
 
-  public SubStatement(String n1, String n2, String outp)
+  public StatementSub(String n1, String n2, String outp)
   {
     varRef1 = n1;
     varRef2 = n2;
     out  = outp;
   }
 
-  public int eval(List<Integer> inputs, List<Integer> state)
+  public double eval(List<Double> inputs, List<Double> state)
   {
     return state.get(Integer.parseInt(varRef1.substring(1)))
       -state.get(Integer.parseInt(varRef2.substring(1)));

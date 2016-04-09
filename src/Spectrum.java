@@ -1,31 +1,38 @@
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import weka.core.*;
 import weka.classifiers.*;
 import weka.classifiers.functions.*;
+import weka.classifiers.trees.*;
 
 public class Spectrum {
 	private final static Logger LOGGER = Logger.getLogger(Spectrum.class.getName());
+	
 	int noTrainingCases, noVar, noLines;
 
-	int[][][] spec; // [variable][line][trainingCase]
-	int[] target; // [trainingCase]
+	double[][][] spec; // [variable][line][trainingCase]
+	double[] target; // [trainingCase]
 	int targetInState; // which variable in state is the target
+	List<Integer> commentLines;
 
 	public Spectrum(Program prog, DataSet ds, Target trg) {
+		LOGGER.setLevel(Level.SEVERE);
+		
+		commentLines = prog.getCommentLines();
 		/** the main spectrum **/
 
 		noTrainingCases = ds.getNoInst();
 		noVar = prog.getNoVar();
 		noLines = prog.getNoLines();
-		spec = new int[noVar][noLines][noTrainingCases];
+		spec = new double[noVar][noLines][noTrainingCases];
 
 		for (int tc = 0; tc < noTrainingCases; tc++) {
-			List<Integer> inputs = ds.getTrainingCase(tc);
-			List<List<Integer>> results = prog.eval(inputs);
+			List<Double> inputs = ds.getTrainingCase(tc);
+			List<List<Double>> results = prog.eval(inputs);
 			for (int line = 0; line < noLines; line++) {
-				List<Integer> state = results.get(line);
+				List<Double> state = results.get(line);
 				for (int var = 0; var < noVar; var++) {
 					spec[var][line][tc] = state.get(var);
 				}
@@ -34,7 +41,7 @@ public class Spectrum {
 
 		/** the target **/
 
-		target = new int[noTrainingCases];
+		target = new double[noTrainingCases];
 		for (int tc = 0; tc < noTrainingCases; tc++) {
 			target[tc] = trg.calculate(ds.getTrainingCase(tc));
 		}
@@ -43,6 +50,8 @@ public class Spectrum {
 	}
 
 	public void analyse() {
+		LOGGER.setLevel(Level.SEVERE);
+		
 		/* set up the feature vector */
 		ArrayList<Attribute> featureVector = new ArrayList<>();
 		for (int var = 0; var < noVar; var++) {
@@ -69,14 +78,23 @@ public class Spectrum {
 			trainingSet.setClass(targetAtt);
 			try {
 				// MultilayerPerceptron cModel = new MultilayerPerceptron();
-				LinearRegression cModel = new LinearRegression();
+				REPTree cModel = new REPTree();
 				cModel.buildClassifier(trainingSet);
-				System.out.println(cModel);
+				LOGGER.info(cModel.toString());
 				 Evaluation eTest = new Evaluation(trainingSet);
 				 eTest.evaluateModel(cModel, trainingSet);
 				 // wibble: previous line should be testing set
-				 String strSummary = eTest.toSummaryString();
-				 System.out.println(strSummary);
+				 LOGGER.info(eTest.toSummaryString().toString());
+
+//				 System.out.println(cModel.numNodes());
+//				 System.out.println(eTest.meanAbsoluteError());
+				 System.out.printf("Complexity %d:\t %.2f", line+4, cModel.numNodes()*eTest.meanAbsoluteError());
+				 LOGGER.info(""+commentLines.contains(line+4));
+				 if (commentLines.contains(line+4)) {
+					 System.out.print("\t ******");
+				 }
+				 System.out.println();
+				 
 			} catch (Exception e) {
 				System.err.println("Error!");
 				System.exit(1);

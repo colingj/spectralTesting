@@ -4,7 +4,7 @@ public class DataSet
 {
   int noInst; //number of instances
   int noInputVar;//number of input variables
-  int[][] data; //[var][inst]
+  double[][] data; //[var][inst]
 
   String[] varNames;
   String name; //human readable name
@@ -24,7 +24,7 @@ public class DataSet
     //min and max are the inclusive ends of the range
     int nn = max-min+1;
     noInst = (int)Math.pow(nn,noInputVar);
-    data = new int[noInputVar][noInst];
+    data = new double[noInputVar][noInst];
 
     /** initialise the zeroth instance **/
     for (int var=0;var<noInputVar;var++)
@@ -40,7 +40,7 @@ public class DataSet
 	  {
 	    if (carry)
 	      {
-		int newVal = data[var][inst-1]+1;
+	    	double newVal = data[var][inst-1]+1;
 		if (newVal>max) { data[var][inst] = min; carry = true; }
 		else { data[var][inst] = newVal; carry = false; }
 	      }
@@ -59,9 +59,9 @@ public class DataSet
   }
 
   /***************************************************************/
-  public List<Integer> getTrainingCase(int inst)
+  public List<Double> getTrainingCase(int inst)
   {
-    List<Integer> ans = new ArrayList<>();
+    List<Double> ans = new ArrayList<>();
     for (int var=0;var<noInputVar;var++)
       {
 	ans.add(data[var][inst]);
@@ -70,7 +70,7 @@ public class DataSet
   }
 
   /***************************************************************/
-  public int[][] getData() { return data; }
+  public double[][] getData() { return data; }
 
   /***************************************************************/
   public int getNoInst() { return noInst; }

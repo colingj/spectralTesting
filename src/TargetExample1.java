@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class TargetExample1 implements Target
-{
-  public int calculate(List<Integer> inputs) 
-  {
-    int ans = 0;
-    for (Integer i: inputs) { ans += i; }
-    return ans;
-  }
+public class TargetExample1 implements Target {
+	public double calculate(List<Double> inputs) {
+		double ans = 0;
+		for (Double i : inputs) {
+			ans += i;
+		}
+		return ans;
+	}
 }

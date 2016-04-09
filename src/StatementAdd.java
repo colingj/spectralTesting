@@ -1,19 +1,19 @@
 import java.util.*;
 
-public class AddStatement extends Statement
+public class StatementAdd extends Statement
 {
   String varRef1;
   String varRef2;
   String out;
 
-  public AddStatement(String n1, String n2, String outp)
+  public StatementAdd(String n1, String n2, String outp)
   {
     varRef1 = n1;
     varRef2 = n2;
     out  = outp;
   }
 
-  public int eval(List<Integer> inputs, List<Integer> state)
+  public double eval(List<Double> inputs, List<Double> state)
   {
     return state.get(Integer.parseInt(varRef1.substring(1)))
       +state.get(Integer.parseInt(varRef2.substring(1)));

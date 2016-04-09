@@ -1,17 +1,17 @@
 import java.util.*;
 
-public class VarStatement extends Statement
+public class StatementVar extends Statement
 {
   String varRef;
   String out;
 
-  public VarStatement(String n1, String outp)
+  public StatementVar(String n1, String outp)
   {
     varRef = n1;
     out  = outp;
   }
 
-  public int eval(List<Integer> inputs, List<Integer> state)
+  public double eval(List<Double> inputs, List<Double> state)
   {
     return inputs.get(Integer.parseInt(varRef));
   }

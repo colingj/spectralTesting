@@ -2,5 +2,5 @@ import java.util.*;
 
 interface Target
 {
-  public int calculate(List<Integer> inputs);
+  public double calculate(List<Double> inputs);
 }

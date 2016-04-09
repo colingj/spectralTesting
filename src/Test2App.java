@@ -5,8 +5,8 @@ public class Test2App
   public static void main(String[] args)
     throws java.io.FileNotFoundException
   {
-    Target tt = new TargetExample1();
-    Program pp = new Program("example1.prg");
+    Target tt = new TargetExample2();
+    Program pp = new Program("example2.prg");
     DataSet ds = new DataSet(pp.getNoInputVar()," Complete 1-4");
     ds.initialiseComplete(1,4);
 
