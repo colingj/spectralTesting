@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,10 +84,31 @@ public class Spectrum {
 				ins.setValue(featureVector.get(noVar), target[tc]);
 				trainingSet.add(ins);
 			}
+
+			/** write to files **/
+			
+			String stimuli = new String();
+			String targets = new String();
+			for (int tc = 0; tc < noTrainingCases; tc++) {
+				for (int var = 0; var < noVar-1; var++) {
+					stimuli += spec[var][line][tc]+";";
+				}
+				stimuli += spec[noVar-1][line][tc]+"\n";
+				targets += target[tc]+"\n";
+			}
+
+			try {
+				Files.write(Paths.get("C:\\Users\\jrw\\git\\spectralTesting\\outputFiles\\stimuli" + line+".txt"), stimuli.getBytes());
+				Files.write(Paths.get("C:\\Users\\jrw\\git\\spectralTesting\\outputFiles\\targets" + line+".txt"), targets.getBytes());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			/** back to weka **/
+			
 			trainingSet.setClass(targetAtt);
 			try {
 				Random rn = new Random();
-
 
 				// /** write first model to answer **/
 				// MultilayerPerceptron model2 = new MultilayerPerceptron();
