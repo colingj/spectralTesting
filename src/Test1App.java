@@ -5,15 +5,15 @@ public class Test1App
   public static void main(String[] args)
     throws java.io.FileNotFoundException
   {
-    Program pp = new Program("example2.prg");
+    Program pp = new Program("exampleQuad.prg");
     List<Double> input = new ArrayList<>();
-    input.add(2.0);
-    input.add(3.0);
+    input.add(1.0);
     input.add(4.0);
-    input.add(5.0);
+    input.add(2.0);
     pp.eval(input);
     
-    Target tt = new TargetExample2();
-    System.out.println(tt.calculate(input));
+    Target tt = new TargetExampleQuad();
+    System.out.println("Target is: "+tt.calculate(input));
+
   }
 }

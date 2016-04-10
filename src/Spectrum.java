@@ -5,11 +5,13 @@ import java.util.logging.Logger;
 import weka.core.*;
 import weka.classifiers.*;
 import weka.classifiers.functions.*;
+import weka.classifiers.meta.AttributeSelectedClassifier;
 import weka.classifiers.trees.*;
+import weka.attributeSelection.*;
 
 public class Spectrum {
 	private final static Logger LOGGER = Logger.getLogger(Spectrum.class.getName());
-	
+
 	int noTrainingCases, noVar, noLines;
 
 	double[][][] spec; // [variable][line][trainingCase]
@@ -19,7 +21,7 @@ public class Spectrum {
 
 	public Spectrum(Program prog, DataSet ds, Target trg) {
 		LOGGER.setLevel(Level.SEVERE);
-		
+
 		commentLines = prog.getCommentLines();
 		/** the main spectrum **/
 
@@ -49,9 +51,14 @@ public class Spectrum {
 		targetInState = prog.getArgOutput();
 	}
 
-	public void analyse() {
+	public double[][] analyse() {
+		// LOGGER.setLevel(Level.INFO);
 		LOGGER.setLevel(Level.SEVERE);
-		
+
+		/** set up outputs **/
+		int numberOfMLMethods = 1;
+		double[][] answer = new double[noLines - noVar + 1][numberOfMLMethods];
+
 		/* set up the feature vector */
 		ArrayList<Attribute> featureVector = new ArrayList<>();
 		for (int var = 0; var < noVar; var++) {
@@ -67,39 +74,50 @@ public class Spectrum {
 				Instance ins = new DenseInstance(noVar + 1);
 				for (int var = 0; var < noVar; var++) {
 					// initialise the variables
-					//System.out.print(spec[var][line][tc] + " ");
+					// System.out.printf("%.2f ", spec[var][line][tc]);
 					ins.setValue(featureVector.get(var), spec[var][line][tc]);
 				}
-				// System.out.println(" "+target[tc]);
+				// System.out.printf("%.2f %n ", target[tc]);
 				// initialise the target value
 				ins.setValue(featureVector.get(noVar), target[tc]);
 				trainingSet.add(ins);
 			}
 			trainingSet.setClass(targetAtt);
 			try {
-				// MultilayerPerceptron cModel = new MultilayerPerceptron();
-				REPTree cModel = new REPTree();
-				cModel.buildClassifier(trainingSet);
-				LOGGER.info(cModel.toString());
-				 Evaluation eTest = new Evaluation(trainingSet);
-				 eTest.evaluateModel(cModel, trainingSet);
-				 // wibble: previous line should be testing set
-				 LOGGER.info(eTest.toSummaryString().toString());
+				Random rn = new Random();
 
-//				 System.out.println(cModel.numNodes());
-//				 System.out.println(eTest.meanAbsoluteError());
-				 System.out.printf("Complexity %d:\t %.2f", line+4, cModel.numNodes()*eTest.meanAbsoluteError());
-				 LOGGER.info(""+commentLines.contains(line+4));
-				 if (commentLines.contains(line+4)) {
-					 System.out.print("\t ******");
-				 }
-				 System.out.println();
-				 
+
+				// /** write first model to answer **/
+				// MultilayerPerceptron model2 = new MultilayerPerceptron();
+				// model2.setHiddenLayers("7,2");
+				// model2.setTrainingTime(500);
+				// model2.buildClassifier(trainingSet);
+				// Evaluation evaluation2 = new Evaluation(trainingSet);
+				// evaluation2.evaluateModel(model2, trainingSet);
+				// System.out.printf("Absolute error: %.2f %n",
+				// evaluation2.meanAbsoluteError());
+				// System.out.println(model2.toString());
+
+				// /** write first model to answer **/
+				// if (line > (noVar - 1)) {
+				// answer[line][0] = evaluation2.meanAbsoluteError();
+				// }
+
+				// /** print out details **/
+				// System.out.printf("Complexity %d:\t %.2f", line + 4,
+				// evaluation2.meanAbsoluteError());
+				// if (commentLines.contains(line + 4)) {
+				// System.out.print("\t ******");
+				// }
+				// System.out.println();
+				// /** end of print out details **/
+
 			} catch (Exception e) {
 				System.err.println("Error!");
 				System.exit(1);
 			}
 		}// end of looping through lines
+		return answer;
 	}
 
 }

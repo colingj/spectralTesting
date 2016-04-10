@@ -9,7 +9,7 @@ public class Program {
 	int argOutput;
 	List<Statement> prog;
 	List<Integer> commentLines;
-	int[] target; 
+	int[] target;
 
 	/********************************************************************/
 	public Program(String programFilename) throws java.io.FileNotFoundException {
@@ -27,7 +27,7 @@ public class Program {
 		}
 		noInputVar = lineSc.nextInt();
 		noVar = lineSc.nextInt();
-		
+
 		String secondLine = sc.nextLine();
 		lineSc = new Scanner(secondLine);// split into tokens by whitespace
 		type = lineSc.next();
@@ -36,7 +36,7 @@ public class Program {
 			System.exit(1);
 		}
 		argOutput = Integer.parseInt(lineSc.next().substring(1));
-	
+
 		String thirdLine = sc.nextLine();
 		lineSc = new Scanner(thirdLine);// split into tokens by whitespace
 		type = lineSc.next();
@@ -119,17 +119,21 @@ public class Program {
 		for (int v = 0; v < noVar; v++) {
 			state.add(0.0);
 		}
+		String stateString = new String();
+		stateString += "\n";
 		for (int i = 0; i < prog.size(); i++) {
-			state.add(prog.get(i).whereTo(), prog.get(i).eval(inputs, state));
-			LOGGER.info("State:\t");
+			LOGGER.info("here: "+prog.get(i).whereTo()+" "+prog.get(i).eval(inputs, state));
+			stateString += "State:\t";
+			state.set(prog.get(i).whereTo(), prog.get(i).eval(inputs, state));
 			for (int v = 0; v < noVar; v++) {
-				LOGGER.info(state.get(v) + "\t");
+				stateString += state.get(v) + "\t";
 			}
-			LOGGER.info("\n");
+			stateString += "\n";
 			/** end of temp print **/
 			evalByStep.add(new ArrayList<Double>(state));
 		}
-		LOGGER.info("\n");
+		stateString += "\n";
+		LOGGER.info(stateString);
 		return evalByStep;
 	}
 
@@ -164,10 +168,10 @@ public class Program {
 	public int getArgOutput() {
 		return argOutput;
 	}
-	
+
 	/********************************************************************/
 	public List<Integer> getCommentLines() {
 		return commentLines;
 	}
-	
+
 }
