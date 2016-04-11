@@ -1,0 +1,11 @@
+<chromosome id="3543" primary-parent-id="790"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="192" src-id="6" dest-id="7" weight="-1.703945188214667"/>
+<connection id="198" src-id="1" dest-id="7" weight="0.039566820040716655"/>
+</chromosome>

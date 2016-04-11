@@ -1,0 +1,14 @@
+<chromosome id="3611" primary-parent-id="3044"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="331" src-id="5" dest-id="7" weight="-0.7628132866646672"/>
+<neuron id="833" type="hid" activation="sigmoid"/>
+<connection id="834" src-id="1" dest-id="833" weight="1.8927238448434647"/>
+<connection id="835" src-id="833" dest-id="7" weight="0.10034694081305429"/>
+<connection id="1334" src-id="3" dest-id="833" weight="-2.1749162758737572"/>
+</chromosome>

@@ -1,0 +1,11 @@
+<chromosome id="3554" primary-parent-id="1964"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="185" src-id="0" dest-id="7" weight="0.9247247740892313"/>
+<connection id="198" src-id="1" dest-id="7" weight="0.4571861962174427"/>
+</chromosome>

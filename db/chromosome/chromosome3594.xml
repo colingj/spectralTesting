@@ -1,0 +1,16 @@
+<chromosome id="3594" primary-parent-id="2274"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="159" src-id="3" dest-id="7" weight="-1.4899369187633396"/>
+<neuron id="581" type="hid" activation="sigmoid"/>
+<connection id="582" src-id="5" dest-id="581" weight="0.23188515144339772"/>
+<connection id="830" src-id="4" dest-id="581" weight="0.11324705090421228"/>
+<neuron id="1463" type="hid" activation="sigmoid"/>
+<connection id="1464" src-id="581" dest-id="1463" weight="-1.70595894780513"/>
+<connection id="1465" src-id="1463" dest-id="7" weight="-3.6920272514289945"/>
+</chromosome>

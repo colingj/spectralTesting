@@ -20,4 +20,9 @@ public class StatementVar extends Statement
   {
     return Integer.parseInt(out.substring(1));
   }
+  
+  public String toString()
+  {
+	  return "var "+varRef+" "+out;
+  }
 }

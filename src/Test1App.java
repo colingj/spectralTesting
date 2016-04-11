@@ -10,7 +10,7 @@ public class Test1App
     input.add(1.0);
     input.add(4.0);
     input.add(2.0);
-    pp.eval(input);
+    pp.getSpectrum(input);
     
     Target tt = new TargetExampleQuad();
     System.out.println("Target is: "+tt.calculate(input));

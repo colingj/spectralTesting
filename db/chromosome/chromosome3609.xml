@@ -1,0 +1,16 @@
+<chromosome id="3609" primary-parent-id="3159"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<neuron id="581" type="hid" activation="sigmoid"/>
+<connection id="582" src-id="5" dest-id="581" weight="-8.40413455347611"/>
+<connection id="583" src-id="581" dest-id="7" weight="-11.733219220065184"/>
+<neuron id="833" type="hid" activation="sigmoid"/>
+<connection id="834" src-id="1" dest-id="833" weight="1.6374627148271566"/>
+<connection id="835" src-id="833" dest-id="7" weight="-1.3004465650764396"/>
+<connection id="1203" src-id="2" dest-id="833" weight="-1.333598395293657"/>
+</chromosome>

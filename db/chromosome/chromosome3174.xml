@@ -1,0 +1,16 @@
+<chromosome id="3174" primary-parent-id="2577"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="331" src-id="5" dest-id="7" weight="0.9680400202012727"/>
+<neuron id="833" type="hid" activation="sigmoid"/>
+<connection id="834" src-id="1" dest-id="833" weight="3.980682597329251"/>
+<connection id="835" src-id="833" dest-id="7" weight="-0.306322110120709"/>
+<connection id="1203" src-id="2" dest-id="833" weight="1.4647229720773225"/>
+<connection id="1334" src-id="3" dest-id="833" weight="-1.688064773649016"/>
+<connection id="1457" src-id="0" dest-id="833" weight="4.5726504541053"/>
+</chromosome>

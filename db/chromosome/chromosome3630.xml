@@ -1,0 +1,16 @@
+<chromosome id="3630" primary-parent-id="3159"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<neuron id="581" type="hid" activation="sigmoid"/>
+<connection id="582" src-id="5" dest-id="581" weight="-4.108918980143841"/>
+<connection id="583" src-id="581" dest-id="7" weight="-11.455948032966246"/>
+<neuron id="833" type="hid" activation="sigmoid"/>
+<connection id="834" src-id="1" dest-id="833" weight="3.5844842732676154"/>
+<connection id="835" src-id="833" dest-id="7" weight="0.8620874314160827"/>
+<connection id="1203" src-id="2" dest-id="833" weight="-2.4007270387295763"/>
+</chromosome>

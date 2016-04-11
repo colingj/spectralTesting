@@ -24,4 +24,9 @@ public class StatementDiv extends Statement {
 	public int whereTo() {
 		return Integer.parseInt(out.substring(1));
 	}
+
+	public String toString() {
+		return "div " + varRef1 + " " + varRef2 + " " + out;
+
+	}
 }

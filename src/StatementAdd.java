@@ -5,6 +5,11 @@ public class StatementAdd extends Statement
   String varRef1;
   String varRef2;
   String out;
+  
+  public static void main(String[] args) {
+	  StatementAdd add = new StatementAdd("v1", "v2", "v3"); 
+	  System.out.println(add.out); 
+  }
 
   public StatementAdd(String n1, String n2, String outp)
   {
@@ -23,4 +28,9 @@ public class StatementAdd extends Statement
   {
     return Integer.parseInt(out.substring(1));
   }
+  
+  public String toString() {
+		return "add "+  varRef1+" "+ varRef2+" "+ out;
+
+	}
 }

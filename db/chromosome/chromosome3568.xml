@@ -1,0 +1,18 @@
+<chromosome id="3568" primary-parent-id="2655"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="159" src-id="3" dest-id="7" weight="4.351879623322587"/>
+<connection id="331" src-id="5" dest-id="7" weight="0.06664031284712843"/>
+<neuron id="581" type="hid" activation="sigmoid"/>
+<connection id="583" src-id="581" dest-id="7" weight="-1.76662707948354"/>
+<connection id="829" src-id="1" dest-id="581" weight="0.4137491145225911"/>
+<connection id="830" src-id="4" dest-id="581" weight="-2.8870865255070353"/>
+<neuron id="1975" type="hid" activation="sigmoid"/>
+<connection id="1976" src-id="5" dest-id="1975" weight="1.5937830365706112"/>
+<connection id="1977" src-id="1975" dest-id="581" weight="0.4162756179051418"/>
+</chromosome>

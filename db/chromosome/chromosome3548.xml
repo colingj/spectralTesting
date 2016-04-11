@@ -1,0 +1,14 @@
+<chromosome id="3548" primary-parent-id="2707"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="192" src-id="6" dest-id="7" weight="-0.7797161450908594"/>
+<connection id="331" src-id="5" dest-id="7" weight="-0.7674056544967645"/>
+<neuron id="957" type="hid" activation="sigmoid"/>
+<connection id="958" src-id="3" dest-id="957" weight="-10.744076064462663"/>
+<connection id="959" src-id="957" dest-id="7" weight="-2.2150115379936555"/>
+</chromosome>

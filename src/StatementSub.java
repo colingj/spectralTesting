@@ -23,4 +23,9 @@ public class StatementSub extends Statement
   {
     return Integer.parseInt(out.substring(1));
   }
+  
+  public String toString() {
+		return "sub "+  varRef1+" "+ varRef2+" "+ out;
+
+	}
 }

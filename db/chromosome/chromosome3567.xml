@@ -1,0 +1,11 @@
+<chromosome id="3567" primary-parent-id="1729"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="198" src-id="1" dest-id="7" weight="-1.9137562385431597"/>
+<connection id="331" src-id="5" dest-id="7" weight="-1.1792860254005957"/>
+</chromosome>

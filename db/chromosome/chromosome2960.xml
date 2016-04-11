@@ -1,0 +1,11 @@
+<chromosome id="2960" primary-parent-id="2313"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="201" src-id="2" dest-id="7" weight="-0.16469837058731338"/>
+<connection id="331" src-id="5" dest-id="7" weight="0.34048265748103385"/>
+</chromosome>

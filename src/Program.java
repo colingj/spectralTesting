@@ -9,7 +9,70 @@ public class Program {
 	int argOutput;
 	List<Statement> prog;
 	List<Integer> commentLines;
-	int[] target;
+
+	private static int numberInstructions = 4;
+
+	public static void main(String[] args) {
+		Program program = new Program(10);
+		// System.out.println(program.getNoLines());
+		System.out.println("print prog");
+		System.out.println(program.toString());
+		List<Double> inputs = new ArrayList<Double>(); 
+		inputs.add(1.0);
+		inputs.add(2.0);
+		inputs.add(3.0);
+		program.getSpectrum(inputs);
+		System.out.println(program.getOutput(inputs));
+	}
+
+	Program(int numLines) {
+		noVar = 3;// hard coded for now.
+		noInputVar = 3;// hard coded for now.
+		argOutput = 2;// hard coded for now.
+		prog = new ArrayList<Statement>();
+		commentLines = new ArrayList<>();
+
+		for (int var=0;var<noInputVar;var++)
+		{
+			prog.add(new StatementVar(var+"","v"+var));
+		}
+		for (int i = 0; i < numLines; i++) {
+			int randomInstruction = new Random().nextInt(numberInstructions);
+			// System.out.println("randomInstruction " + randomInstruction);
+
+			switch (randomInstruction) {
+			case 0:
+				prog.add(new StatementAdd(getRandomVariableNumber(noVar), getRandomVariableNumber(noVar), getRandomVariableNumber(noVar)));
+				break;
+			case 1:
+				prog.add(new StatementSub(getRandomVariableNumber(noVar), getRandomVariableNumber(noVar), getRandomVariableNumber(noVar)));
+				break;
+			case 2:
+				prog.add(new StatementMul(getRandomVariableNumber(noVar), getRandomVariableNumber(noVar), getRandomVariableNumber(noVar)));
+				break;
+			case 3:
+				prog.add(new StatementDiv(getRandomVariableNumber(noVar), getRandomVariableNumber(noVar), getRandomVariableNumber(noVar)));
+				break;
+
+			default:
+				System.out.println("Invalid instruction number Invalid instruction number Invalid instruction number Invalid instruction number");
+				break;
+			}
+		}
+		System.out.println("prog.size() " + prog.size());
+	}
+
+	public String getRandomVariableNumber(int noVar) {
+		return "v" + (new Random().nextInt(noVar));
+	}
+
+	public String toString() {
+		String str = "" + noVar + " " + noInputVar + " " + argOutput + "\n";
+		for (int i = 0; i < prog.size(); i++) {
+			str += prog.get(i) + "\n";
+		}
+		return str;
+	}
 
 	/********************************************************************/
 	public Program(String programFilename) throws java.io.FileNotFoundException {
@@ -111,18 +174,21 @@ public class Program {
 	}
 
 	/********************************************************************/
-	public List<List<Double>> eval(List<Double> inputs) {
+	public List<List<Double>> getSpectrum(List<Double> inputs) {
 		LOGGER.setLevel(Level.SEVERE);
+//		LOGGER.setLevel(Level.INFO);
 		List<List<Double>> evalByStep = new ArrayList<>();
 		// this is a list by line of state-lists
 		List<Double> state = new ArrayList<>();
 		for (int v = 0; v < noVar; v++) {
+			//state.add(Math.random());
 			state.add(0.0);
 		}
 		String stateString = new String();
 		stateString += "\n";
 		for (int i = 0; i < prog.size(); i++) {
-			LOGGER.info("here: "+prog.get(i).whereTo()+" "+prog.get(i).eval(inputs, state));
+			//System.out.println("test case: "+i);
+			LOGGER.info("here: " + prog.get(i).whereTo() + " " + prog.get(i).eval(inputs, state));
 			stateString += "State:\t";
 			state.set(prog.get(i).whereTo(), prog.get(i).eval(inputs, state));
 			for (int v = 0; v < noVar; v++) {
@@ -136,7 +202,13 @@ public class Program {
 		LOGGER.info(stateString);
 		return evalByStep;
 	}
-
+	
+	/********************************************************************/
+	public double getOutput(List<Double> inputs) {
+		List<List<Double>> spec = this.getSpectrum(inputs);
+		return spec.get(spec.size()-1).get(argOutput);
+	}
+	
 	/********************************************************************/
 	/*
 	 * public int[][] multiEval(List<List<Integer>> inputsList) { //each "eval"

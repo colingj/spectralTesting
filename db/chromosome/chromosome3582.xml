@@ -1,0 +1,11 @@
+<chromosome id="3582" primary-parent-id="3059"><neuron id="0" type="in" activation="linear"/>
+<neuron id="1" type="in" activation="linear"/>
+<neuron id="2" type="in" activation="linear"/>
+<neuron id="3" type="in" activation="linear"/>
+<neuron id="4" type="in" activation="linear"/>
+<neuron id="5" type="in" activation="linear"/>
+<neuron id="6" type="in" activation="linear"/>
+<neuron id="7" type="out" activation="sigmoid"/>
+<connection id="198" src-id="1" dest-id="7" weight="2.4172651873464477"/>
+<connection id="201" src-id="2" dest-id="7" weight="2.432841287331612"/>
+</chromosome>
