@@ -95,9 +95,10 @@ public class Spectrum {
 			for (int tc = 0; tc < noTrainingCases; tc++) {
 				for (int var = 0; var < noVar; var++) {
 					theString += spec[var][line][tc]-target[tc] + ";";
+//					theString += spec[var][line][tc]+ ";";
 				}
 			}
-			System.out.println(theString);
+			//System.out.println(theString);
 			String outStr = new String();
 			try {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
