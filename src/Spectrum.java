@@ -71,7 +71,7 @@ public class Spectrum {
 		featureVector.add(targetAtt);
 
 		/** build a model for each line **/
-		for (int line = 0; line < noLines; line++) {
+		for (int line = 1; line < noLines; line++) {
 			Instances trainingSet = new Instances("ts" + line, featureVector, noTrainingCases);
 			for (int tc = 0; tc < noTrainingCases; tc++) {
 				Instance ins = new DenseInstance(noVar + 1);
@@ -92,9 +92,16 @@ public class Spectrum {
 //			String format = decimalFormat.format(123456789.123);
 //			System.out.println(format);
 			String theString = new String();
+			double currentValue = 0.0;
 			for (int tc = 0; tc < noTrainingCases; tc++) {
-				for (int var = 0; var < noVar; var++) {
-					theString += spec[var][line][tc]-target[tc] + ";";
+				for (int var = 1; var < noVar; var++) {
+					if (spec[var][line][tc]-spec[var][line-1][tc]!=0)
+					{
+//						theString += spec[var][line][tc]+": "+target[tc]+": "+(spec[var][line][tc]-target[tc]) + "\t ";
+						theString += currentValue-(spec[var][line][tc]-target[tc]) + "\t ";
+						currentValue = spec[var][line][tc]-target[tc];
+					}
+//					theString += spec[var][line][tc]-target[tc] + ";";
 //					theString += spec[var][line][tc]+ ";";
 				}
 			}
@@ -112,7 +119,7 @@ public class Spectrum {
 				System.err.println("Error");
 				System.exit(1);
 			}
-			System.out.println(outStr.length());
+			System.out.println("compression:"+ outStr.length());
 
 			// /** write to files **/
 			//

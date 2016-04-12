@@ -180,9 +180,9 @@ public class Program {
 		List<List<Double>> evalByStep = new ArrayList<>();
 		// this is a list by line of state-lists
 		List<Double> state = new ArrayList<>();
+		Random rn = new Random(0l);
 		for (int v = 0; v < noVar; v++) {
-			//state.add(Math.random());
-			state.add(0.0);
+			state.add(((double)rn.nextInt(99))/10.0);
 		}
 		String stateString = new String();
 		stateString += "\n";
